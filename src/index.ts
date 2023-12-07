@@ -142,6 +142,26 @@ app.get('/download/video', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 })
+app.get("/low-audio", async (req, res) => {
+  const url = req.query.url;
+  const itag = req.query.itag;
+  const type = req.query.type;
+
+  // const info = await ytdl.getInfo(url);
+  // const title = info.videoDetails.title;
+
+  // res.header("Content-Disposition", `attachment;  filename="Download from.vivekmasona"`);
+  try {
+    ytdl(url, {
+            format: 'mp3',
+            filter: 'audioonly',
+            quality: 'lowest'
+        }).pipe(res);
+
+    } catch (err) {
+        console.error(err);
+    }
+})
 
 
 
