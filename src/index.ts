@@ -163,7 +163,18 @@ app.get("/low-audio", async (req, res) => {
     }
 })
 
+app.get("/download", function(req,res){
+    var URL = req.query.URL
+    res.header("Content-Disposition", 'attachment; filename="${sanitizedTitle}(vivek masona).mp4"')
 
+    ytdl(URL, {
+        format: "mp4"
+        }).pipe(res)
+})
+
+//app.get("/*", function(req,res){
+ // res.redirect("/")
+//})
 
 app.get('/', (req: Request, res: Response) => {
   res.json({
