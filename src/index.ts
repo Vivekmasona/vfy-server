@@ -165,10 +165,10 @@ app.get("/low-audio", async (req, res) => {
 
 app.get("/download", function(req,res){
     var URL = req.query.URL
-    res.header("Content-Disposition", 'attachment; filename="${sanitizedTitle}(vivek masona).mp4"')
+    res.setHeader('Content-Disposition', `attachment; filename="${sanitizedTitle}(vivek masona).mp4"`);
 
     ytdl(URL, {
-        format: "mp4"
+        format: 'mp4'
         }).pipe(res)
 })
 
